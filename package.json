@@ -1,0 +1,10 @@
+{
+  "name": "master-of-puppets",
+  "descriptio": "Manage shared folders",
+  "version": "0.0.1",
+  "main": "main.js",
+
+  "devDependencies": {
+    "electron-prebuilt": "^0.37.0"
+  }
+}
