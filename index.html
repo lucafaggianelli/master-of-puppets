@@ -14,8 +14,16 @@
       type="application/javascript"></script>
   <script src="node_modules/angular-resource/angular-resource.min.js"
       type="application/javascript"></script>
+  <script src="node_modules/angular-route/angular-route.min.js"
+      type="application/javascript"></script>
 
+  <!-- Angular app files -->
   <script src="js/app.js" type="application/javascript"></script>
+  <script src="js/controllers.js" type="application/javascript"></script>
+  <script src="js/services.js" type="application/javascript"></script>
+  <script src="js/resources.js" type="application/javascript"></script>
+  <script src="js/directives.js" type="application/javascript"></script>
+
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 
@@ -41,6 +49,13 @@
     <div ng-include="'views/documents.html'"></div>
   </div>
 
+  <modal-dialog modal-id="prefs-modal" title="Preferences">
+  <!--<div ng-include="'views/preferences.html'"></div>-->
+  </modal-dialog>
+
+  <modal-dialog modal-id="admin-modal" title="Admin">
+  <!--<div ng-include="'views/admin.html'"></div>-->
+  </modal-dialog>
 </body>
 </html>
 

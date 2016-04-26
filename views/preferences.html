@@ -1,0 +1,9 @@
+<form ng-submit="saveSettings()" ng-controller="PreferencesCtrl">
+  <div class="form-group"
+      ng-repeat="(name, value) in prefs">
+    <label>{{ name }}</label>
+    <input class="form-control" type="text" ng-model="prefs[name]"></input>
+  </div>
+
+  <button class="btn btn-success">Save</button>
+</form>

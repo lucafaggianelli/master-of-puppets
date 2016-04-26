@@ -3,12 +3,12 @@
     <div class="row">
       <div class="col-lg-6">
         <select class="form-control"
-            ng-options="cat for cat in settings.categories"
+            ng-options="cat for cat in categories_available"
             ng-model="docsFilter.categories"></select>
       </div>
       <div class="col-lg-6">
         <select class="form-control" multiple
-            ng-options="tag for tag in settings.tags"
+            ng-options="tag for tag in tags_available"
             ng-model="docsFilter.tags"></select>
       </div>
     </div>
