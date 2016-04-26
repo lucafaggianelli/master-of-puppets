@@ -1,4 +1,4 @@
-<form ng-submit="submitDocument()">
+<form ng-submit="saveDocument()">
   <div class="form-group">
     <input class="form-control" name="name" placeholder="Name"
         ng-model="docsForm.name" />
@@ -22,8 +22,9 @@
     </div>
   </div>
   <div class="form-group">
-    <input class="form-control" name="path" placeholder="DL_Mobile/..."
-        ng-model="docsForm.path" />
+    <input class="form-control" name="file"
+        ng-repeat="file in docsForm.files"
+        placeholder="/some/file.pdf" ng-model="file" name="name{{$index}}" />
   </div>
 
   <div class="form-group">

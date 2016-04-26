@@ -10,9 +10,14 @@
   <tbody>
     <tr ng-repeat="doc in documents | filter: docsFilter" class="document-item">
       <td><a href="#" ng-click="openFile(doc)">{{ doc.name }}</a>
-        <span class="badge" ng-if="doc.revisions.length > 1">{{ doc.revisions.length }}</span></td>
+        <span class="badge" ng-if="doc.files.length > 1">{{ doc.revisions.length }}</span></td>
       <td><span ng-repeat="tag in doc.tags" class="label label-default">{{ tag }}</span></td>
-      <td><a href="#" data-toggle="modal" data-target="#document-modal" ng-click="editDocument(doc)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+      <td>
+        <a href="#" data-toggle="modal" data-target="#document-modal" ng-click="editDocument(doc)">
+          <span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="#" ng-click="deleteDocument(doc, $index)">
+          <span class="glyphicon glyphicon-trash"></span></a>
+      </td>
     </tr>
   </tbody>
 </table>
