@@ -11,7 +11,7 @@
     "url": "git+https://github.com/lucafaggianelli/sibilla.git"
   },
   "author": "Luca Faggianelli",
-  "license": "",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lucafaggianelli/sibilla/issues"
   },
@@ -22,6 +22,7 @@
   "dependencies": {
     "angular": "1.5.x",
     "angular-resource": "1.5.x",
+    "bootstrap": "^3.3.6",
     "jquery": "~2.2.3"
   }
 }
