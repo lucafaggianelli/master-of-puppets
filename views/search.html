@@ -1,0 +1,16 @@
+<form>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-lg-6">
+        <select class="form-control"
+            ng-options="cat for cat in settings.categories"
+            ng-model="docsFilter.categories"></select>
+      </div>
+      <div class="col-lg-6">
+        <select class="form-control" multiple
+            ng-options="tag for tag in settings.tags"
+            ng-model="docsFilter.tags"></select>
+      </div>
+    </div>
+  </div>
+</form>

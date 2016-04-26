@@ -1,0 +1,18 @@
+<table class="table table-hover documents-table">
+  <thead>
+    <tr>
+      <th>Document</th>
+      <th>Tags</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="doc in documents | filter: docsFilter" class="document-item">
+      <td><a ng-href="file:///media/L/{{ doc.path }}/{{ doc.revisions[0] }}">{{ doc.name }}</a>
+        <span class="badge" ng-if="doc.revisions.length > 1">{{ doc.revisions.length }}</span></td>
+      <td><span ng-repeat="tag in doc.tags" class="label label-default">{{ tag }}</span></td>
+      <td><a href="#" data-toggle="modal" data-target="#document-modal" ng-click="editDocument(doc)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+    </tr>
+  </tbody>
+</table>

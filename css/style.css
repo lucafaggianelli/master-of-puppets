@@ -1,0 +1,6 @@
+.document-item .label {
+  margin-right: 2px;
+}
+.document-item .label:last-child {
+  margin-right: 0;
+}

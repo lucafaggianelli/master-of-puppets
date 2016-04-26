@@ -1,13 +1,42 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-  </body>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sibilla</title>
+
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>window.$ = window.jQuery = require('jquery')</script>
+  <script src="js/angular.min.js" type="application/javascript"></script>
+  <script src="js/app.js" type="application/javascript"></script>
+  <script src="bootstrap/js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+
+<body ng-app="sibilla" ng-controller="MainCtrl">
+
+  <div class="container">
+    <div ng-include="'views/navbar.html'"></div>
+  </div>
+
+  <div class="container">
+    <modal-dialog modal-id="search-modal" title="Advanced Search">
+      <div ng-include="'views/search.html'"></div>
+    </modal-dialog>
+  </div>
+
+  <div class="container">
+    <modal-dialog modal-id="document-modal" title="New Document" save="submitDocument()">
+      <div ng-include="'views/document-form.html'"></div>
+    </modal-dialog>
+  </div>
+
+  <div class="container">
+    <div ng-include="'views/documents.html'"></div>
+  </div>
+
+</body>
 </html>
+
