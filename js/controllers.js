@@ -16,7 +16,6 @@ angular.module('sibilla')
       // When creating a new doc, init the model
       // with $resource instance
       doc = new Document();
-      console.log('new doc', $scope.docsForm)
     }
     $scope.docsForm = doc;
   };
@@ -28,6 +27,12 @@ angular.module('sibilla')
   $scope.saveDocument = function() {
     if (!this.docsForm)
       return;
+
+    if (this.docsForm.newFile) {
+      if (!this.docsForm.files)
+        this.docsForm.files = [];
+      this.docsForm.files.unshift(this.docsForm.newFile);
+    }
 
     if (this.docsForm.id) {
       console.log("Update doc");

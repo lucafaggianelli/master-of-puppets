@@ -1,4 +1,4 @@
-<form ng-submit="saveDocument()">
+<form ng-submit="saveDocument()" name="documentform">
   <div class="form-group">
     <input class="form-control" name="name" placeholder="Name"
         ng-model="docsForm.name" />
@@ -21,13 +21,27 @@
       </div>
     </div>
   </div>
+
   <div class="form-group">
-    <input class="form-control" name="file"
-        ng-repeat="file in docsForm.files"
-        placeholder="/some/file.pdf" ng-model="file" name="name{{$index}}" />
+    <input class="form-control"
+        placeholder="/some/file.pdf" ng-model="docsForm.newFile" />
+  </div>
+
+  <div class="form-group"
+      ng-repeat="file in docsForm.files track by $index">
+    <div class="input-group">
+      <input class="form-control" name="file"
+          placeholder="/some/file.pdf" ng-model="docsForm.files[$index]" />
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"
+          ng-click="docsForm.files.splice($index,1)"
+          ><span class="glyphicon glyphicon-remove"></span></button>
+      </span>
+    </div>
   </div>
 
   <div class="form-group">
-    <button type="submit" class="btn btn-success form-control">Save</button>
+    <button type="submit" class="btn btn-success form-control"
+      ng-disabled="documentform.$pristine">Save</button>
   </div>
 </form>
