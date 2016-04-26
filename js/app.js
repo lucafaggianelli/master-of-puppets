@@ -1,3 +1,6 @@
+const shell = require('electron').shell;
+const path = require('path');
+
 angular.module('sibilla', [])
 
 .controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
@@ -16,7 +19,17 @@ angular.module('sibilla', [])
   };
 
   $scope.submitDocument = function() {
-    console.log($scope.docsForm);
+    console.log("Saving doc", this.docsForm);
+    $http.post($scope.settings.server, this.docsForm);
+  };
+
+  $scope.openFile = function(doc) {
+    var drive = $scope.settings.drives[doc.drive];
+    var filename = doc.path +'/'+ doc.revisions[0];
+    var abs_path = path.join(drive, filename);
+
+    console.log('opening file', abs_path);
+    shell.openItem(abs_path);
   };
 
   $scope.selectCategory = function(cat) {
