@@ -1,7 +1,5 @@
-angular.module('sibilla')
+var mainCtrl = function ($scope, $http, Document, Category, Tag, Preferences) {
 
-.controller('MainCtrl', ['$scope', '$http', 'Document', 'Category', 'Preferences',
-    function ($scope, $http, Document, Category, Preferences) {
   $scope.docsFilter = { };
   $scope.prefs = Preferences;
 
@@ -9,6 +7,8 @@ angular.module('sibilla')
   $scope.documents = Document.query();
   /* Query all categories */
   $scope.categories_available = Category.query();
+  /* Query all tags */
+  $scope.tags_available = Tag.query();
 
   /* Document actions */
   $scope.editDocument = function(doc) {
@@ -34,6 +34,11 @@ angular.module('sibilla')
       this.docsForm.files.unshift(this.docsForm.newFile);
     }
 
+    this.docsForm.categories =
+        this.docsForm.categories.map(function(x){return x.id});
+    this.docsForm.tags =
+        this.docsForm.tags.map(function(x){return x.id});
+
     if (this.docsForm.id) {
       console.log("Update doc");
       this.docsForm.$update();
@@ -56,15 +61,84 @@ angular.module('sibilla')
   $scope.selectCategory = function(cat) {
     $scope.docsFilter.categories = cat;
   };
-}])
+}
+
+var adminCtrl = function($scope, Preferences, Category, Tag) {
+  $scope.categories = Category.query();
+  $scope.category_new = new Category();
+
+  $scope.tags = Tag.query();
+  $scope.tag_new = new Tag();
+
+  $scope.createCategory = function() {
+    console.log("create cat", $scope.category_new);
+
+    if (!$scope.category_new)
+      return;
+
+    $scope.category_new.$save();
+  };
+
+  $scope.updateCategory = function(cat) {
+    console.log("update cat", cat);
+
+    if (!cat)
+      return;
+
+    cat.$update();
+  };
+
+  $scope.deleteCategory = function(cat) {
+    cat.$delete();
+  };
+
+  /*
+   * Tags
+   */
+  $scope.createTag = function() {
+    console.log("create tag", $scope.tag_new);
+
+    if (!$scope.tag_new)
+      return;
+
+    $scope.tag_new.$save();
+  };
+
+  $scope.updateTag = function(tag) {
+    console.log("update tag", tag);
+
+    if (!tag)
+      return;
+
+    tag.$update();
+  };
+
+  $scope.deleteTag = function(tag) {
+    tag.$delete();
+  };
+}
+
+var preferencesCtrl = function($scope, Preferences) {
+  $scope.prefs = Preferences.get();
+
+  $scope.saveSettings = function() {
+    console.log($scope.prefs);
+    //Preferences.save($scope.prefs);
+  };
+}
+
+
+angular.module('sibilla')
+
+.controller('MainCtrl', ['$scope', '$http', 'Document', 'Category', 'Tag', 'Preferences',
+  mainCtrl
+])
 
 .controller('PreferencesCtrl', ['$scope', 'Preferences',
-    function($scope, Preferences) {
-      $scope.prefs = Preferences.get();
+  preferencesCtrl
+])
 
-      $scope.saveSettings = function() {
-        console.log($scope.prefs);
-        //Preferences.save($scope.prefs);
-      };
-}])
+.controller('AdminCtrl', ['$scope', 'Preferences', 'Category', 'Tag',
+  adminCtrl
+])
 

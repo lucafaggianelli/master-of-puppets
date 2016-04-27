@@ -1,14 +1,14 @@
 <form>
   <div class="form-group">
     <div class="row">
-      <div class="col-lg-6">
-        <select class="form-control"
-            ng-options="cat for cat in categories_available"
+      <div class="col-sm-6">
+        <select class="form-control" multiple
+            ng-options="cat.name for cat in categories_available track by cat.id"
             ng-model="docsFilter.categories"></select>
       </div>
-      <div class="col-lg-6">
+      <div class="col-sm-6">
         <select class="form-control" multiple
-            ng-options="tag for tag in tags_available"
+            ng-options="tag.name for tag in tags_available track by tag.id"
             ng-model="docsFilter.tags"></select>
       </div>
     </div>

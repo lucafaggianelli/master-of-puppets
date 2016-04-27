@@ -17,7 +17,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li ng-repeat="cat in categories_available"><a href="#" ng-click="selectCategory(cat)">{{ cat }}</a></li>
+            <li ng-repeat="cat in categories_available"><a href="#" ng-click="selectCategory(cat)">{{ cat.name }}</a></li>
           </ul>
         </li>
         <li>
