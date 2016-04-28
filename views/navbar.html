@@ -14,17 +14,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li ng-repeat="cat in categories_available"><a href="#" ng-click="selectCategory(cat)">{{ cat.name }}</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" data-toggle="modal" data-target="#search-modal">
-            <span class="glyphicon glyphicon-search"></span> Search
-          </a>
-        </li>
         <li>
           <a href="#" data-toggle="modal" data-target="#document-modal" ng-click="editDocument()">
             <span class="glyphicon glyphicon-plus"></span> Document
@@ -35,6 +24,8 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search" ng-model="docsFilter.$" tabindex="1" />
           <span class="input-group-btn">
+            <button class="btn btn-default" data-toggle="modal" data-target="#search-modal">
+              <span class="glyphicon glyphicon-filter"></span></button>
             <button class="btn btn-default" ng-click="docsFilter.$ = ''">
               <span class="glyphicon glyphicon-remove"></span></button>
           </span>
