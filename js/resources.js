@@ -41,3 +41,9 @@ angular.module('sibilla')
     }
 ])
 
+.factory('Drive', ['$resource', 'Preferences',
+    function($resource, Preferences) {
+      return build_resource($resource, Preferences, '/api/drives/:id', {'id': '@id'});
+    }
+])
+

@@ -1,0 +1,21 @@
+<div ng-controller="FilePickerCtrl">
+  <ol class="breadcrumb">
+    <li ng-repeat="folder in cwd track by $index"
+        ng-click="cd($index)">
+        <a href="#">{{ folder }}</a></li>
+  </ol>
+
+  <div class="filepicker-list list-group">
+    <a href="#" class="list-group-item"
+      ng-class="{'active': (selected==item.file)}"
+      ng-repeat="item in dirContent"
+      ng-click="cd(item)">
+      <span class="glyphicon glyphicon-{{ item.icon }}"></span>
+      &nbsp;{{ item.file }}
+    </a>
+  </div>
+
+  <button class="btn btn-success" data-dismiss="modal"
+      ng-click="select()">
+    OK</button>
+</div>

@@ -4,3 +4,8 @@
 .document-item .label:last-child {
   margin-right: 0;
 }
+
+.filepicker-list {
+  max-height: 300px;
+  overflow: auto;
+}
