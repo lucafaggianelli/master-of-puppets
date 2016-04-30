@@ -10,8 +10,9 @@
       ng-class="{'active': (selected==item.file)}"
       ng-repeat="item in dirContent"
       ng-click="cd(item)">
-      <span class="glyphicon glyphicon-{{ item.icon }}"></span>
-      &nbsp;{{ item.file }}
+      <span class="glyphicon glyphicon-{{ item.icon }} gi-fw"></span>
+      <span> {{ item.file }}</span>
+      <small class="pull-right" ng-if="!item.isdir"><i>{{ item.size | bytes }}</i></small>
     </a>
   </div>
 

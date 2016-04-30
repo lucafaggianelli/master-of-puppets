@@ -2,6 +2,7 @@ const shell = require('electron').shell;
 const path = require('path');
 const fs = require('fs');
 const njds = require('nodejs-disks');
+const mime = require('mime-types');
 
 angular.module('sibilla', [
       'ngResource',

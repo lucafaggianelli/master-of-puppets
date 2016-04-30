@@ -68,7 +68,8 @@ angular.module('filepicker', [])
           file: files[i],
           isdir: stat.isDirectory(),
           size: stat.size,
-          icon: stat.isDirectory() ? 'folder-open' : 'file'
+          icon: stat.isDirectory() ? 'folder-open' : 'file',
+          mime: mime.lookup(files[i]),
         });
       }
       $scope.$apply();

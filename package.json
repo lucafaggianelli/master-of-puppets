@@ -25,6 +25,7 @@
     "angular-route": "^1.5.5",
     "bootstrap": "^3.3.6",
     "jquery": "~2.2.3",
+    "mime-types": "^2.1.10",
     "nodejs-disks": "^0.2.1"
   }
 }
