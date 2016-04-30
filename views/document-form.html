@@ -39,6 +39,7 @@
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" ng-click="openFilePicker()"
           data-toggle="modal" data-target="#filepicker-modal"
+          ng-disabled="!docsForm.drive"
           ><span class="glyphicon glyphicon-folder-open"></span></button>
       </span>
     </div>
