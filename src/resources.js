@@ -11,9 +11,7 @@ var build_resource = function($resource, Preferences, path, params) {
   return $resource(Preferences.get('server') + path,
     params,
     {
-      query: {method: 'GET', isArray: true,
-        transformResponse: get_data_from_response
-      },
+      query: {method: 'GET', isArray: true},
       update: {method: 'PUT',
         transformRequest: hide_id_from_data
       }
@@ -23,27 +21,31 @@ var build_resource = function($resource, Preferences, path, params) {
 
 angular.module('sibilla')
 
+.config(function($resourceProvider) {
+  $resourceProvider.defaults.stripTrailingSlashes = false;
+})
+
 .factory('Document', ['$resource', 'Preferences',
     function($resource, Preferences) {
-      return build_resource($resource, Preferences, '/api/docs/:id', {'id': '@id'});
+      return build_resource($resource, Preferences, '/api/docs/:id/', {'id': '@id'});
     }
 ])
 
 .factory('Category', ['$resource', 'Preferences',
     function($resource, Preferences) {
-      return build_resource($resource, Preferences, '/api/categories/:id', {'id': '@id'});
+      return build_resource($resource, Preferences, '/api/categories/:id/', {'id': '@id'});
     }
 ])
 
 .factory('Tag', ['$resource', 'Preferences',
     function($resource, Preferences) {
-      return build_resource($resource, Preferences, '/api/tags/:id', {'id': '@id'});
+      return build_resource($resource, Preferences, '/api/tags/:id/', {'id': '@id'});
     }
 ])
 
 .factory('Drive', ['$resource', 'Preferences',
     function($resource, Preferences) {
-      return build_resource($resource, Preferences, '/api/drives/:id', {'id': '@id'});
+      return build_resource($resource, Preferences, '/api/drives/:id/', {'id': '@id'});
     }
 ])
 

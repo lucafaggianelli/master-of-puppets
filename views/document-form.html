@@ -16,7 +16,7 @@
       </div>
       <div class="col-sm-6">
         <select class="form-control" multiple
-            ng-options="tag.id as tag.name for tag in tags_available"
+            ng-options="tag.id as tag.name for (k,tag) in tags_available"
             ng-model="docsForm.tags"></select>
       </div>
     </div>

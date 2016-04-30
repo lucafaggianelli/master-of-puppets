@@ -23,7 +23,12 @@ angular.module('sibilla', [
   /* Query all categories */
   $scope.categories_available = Category.query();
   /* Query all tags */
-  $scope.tags_available = Tag.query();
+  Tag.query(function(data) {
+    $scope.tags_available = {};
+    angular.forEach(data, function(tag){
+      $scope.tags_available[tag.id] = tag;
+    });
+  });
   /* Query all drives */
   $scope.drives_available = Drive.query(function() {
     $scope.initDrives();
