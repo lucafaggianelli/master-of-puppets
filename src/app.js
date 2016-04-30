@@ -39,7 +39,7 @@ angular.module('sibilla', [
     $scope.docsForm = doc;
   };
 
-  $scope.deleteDocument = function(doc, index) {
+  $scope.deleteDocument = function(doc) {
     doc.$delete();
   };
 
