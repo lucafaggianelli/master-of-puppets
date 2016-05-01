@@ -3,6 +3,7 @@ angular.module('filepicker', [])
 .controller('FilePickerCtrl', ['$scope', 'Preferences',
     function($scope, Preferences) {
 
+  $scope.root = null;
   $scope.cwd = [];
   $scope.dirContent = [];
 
@@ -80,14 +81,18 @@ angular.module('filepicker', [])
     if ($scope.selected)
       $scope.cwd.push($scope.selected);
 
-    $scope.$emit('filepicker:onSelect', path.join.apply(this, $scope.cwd));
+    var absolute = path.join.apply(this, $scope.cwd);
+    var relative = path.relative($scope.root, absolute);
+    $scope.$emit('filepicker:onSelect', relative);
 
+    $scope.root = null;
     $scope.cwd = [];
     $scope.dirContent = [];
   }
 
   $scope.$on('filepicker:setRoot', function(event, root) {
     console.log('setRoot', root);
+    $scope.root = root;
     $scope.cd(root);
   });
 }])
