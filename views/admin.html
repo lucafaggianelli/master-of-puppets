@@ -80,6 +80,18 @@
     </div>
   </div>
 
+  <div class="input-group"
+      ng-repeat="drive in drives">
+    <input type="text" class="form-control"
+        placeholder="Name" ng-model="drive.name" />
+    <span class="input-group-addon">{{ drive.drive_id }}</span>
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button"
+        ng-click="deleteDrive(drive)"
+        ><span class="glyphicon glyphicon-remove"></span></button>
+    </span>
+  </div>
+
   <!--
   <div class="form-group">
     <button type="submit" class="btn btn-success form-control"

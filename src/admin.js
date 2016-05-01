@@ -85,6 +85,10 @@ angular.module('sibilla-admin', [])
     $scope.drive_new.$save();
   };
 
+  $scope.deleteDrive = function(drive) {
+    drive.$delete();
+  };
+
   $scope.listLocalDrives();
 }])
 
