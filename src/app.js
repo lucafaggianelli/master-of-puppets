@@ -6,11 +6,16 @@ const mime = require('mime-types');
 
 angular.module('sibilla', [
       'ngResource',
-      
+      'angular-loading-bar',
+
       'sibilla-admin',
       'filepicker',
       'preferences'
     ])
+
+.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+  cfpLoadingBarProvider.includeSpinner = false;
+}])
 
 .controller('MainCtrl', ['$scope', 'Document', 'Category', 'Tag', 'Drive', 'Preferences',
     function ($scope, Document, Category, Tag, Drive, Preferences) {
