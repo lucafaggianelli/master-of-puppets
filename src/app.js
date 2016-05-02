@@ -7,6 +7,7 @@ const mime = require('mime-types');
 angular.module('sibilla', [
       'ngResource',
       'angular-loading-bar',
+      'ngFlash',
 
       'sibilla-admin',
       'filepicker',
@@ -17,8 +18,8 @@ angular.module('sibilla', [
   cfpLoadingBarProvider.includeSpinner = false;
 }])
 
-.controller('MainCtrl', ['$scope', 'Document', 'Category', 'Tag', 'Drive', 'Preferences',
-    function ($scope, Document, Category, Tag, Drive, Preferences) {
+.controller('MainCtrl', ['$scope', 'Document', 'Category', 'Tag', 'Drive', 'Preferences', 'Flash',
+    function ($scope, Document, Category, Tag, Drive, Preferences, Flash) {
 
   $scope.docsFilter = { };
   $scope.prefs = Preferences;

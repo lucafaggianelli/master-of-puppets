@@ -19,6 +19,8 @@
       type="application/javascript"></script>
   <script src="node_modules/angular-loading-bar/build/loading-bar.min.js"
       type="application/javascript"></script>
+  <script src="node_modules/angular-flash-alert/dist/angular-flash.min.js"
+      type="application/javascript"></script>
 
   <!-- Angular app files -->
   <script src="src/app.js" type="application/javascript"></script>
@@ -34,6 +36,15 @@
 </head>
 
 <body ng-app="sibilla" ng-controller="MainCtrl">
+
+  <div class="flash-messages">
+    <div class="container">
+      <flash-message
+          duration="5000"
+          show-close="true"
+      ></flash-message>
+    </div>
+  </div>
 
   <div class="container">
     <div ng-include="'views/navbar.html'"></div>

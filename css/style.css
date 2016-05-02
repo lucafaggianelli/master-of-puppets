@@ -14,3 +14,11 @@
     width: 1.28571429em;
     text-align: center;
 }
+
+.flash-messages {
+  position: fixed;
+  top: 15px;
+  z-index: 10000;
+  width: 100%;
+  opacity: .9;
+}
