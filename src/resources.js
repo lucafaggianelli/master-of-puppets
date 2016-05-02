@@ -11,7 +11,9 @@ var build_resource = function($resource, Preferences, path, params) {
   return $resource(Preferences.get('server') + path,
     params,
     {
-      query: {method: 'GET', isArray: true},
+      query: {method: 'GET', isArray: true,
+        transformResponse: get_data_from_response
+      },
       update: {method: 'PUT',
         transformRequest: hide_id_from_data
       }
