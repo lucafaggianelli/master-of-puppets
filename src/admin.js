@@ -77,12 +77,14 @@ angular.module('sibilla-admin', [])
   }
 
   $scope.createDrive = function() {
-    console.log("create drive", $scope.drive_new);
-
     if (!$scope.drive_new)
       return;
 
     $scope.drive_new.$save();
+  };
+
+  $scope.updateDrive = function(drive) {
+    drive.$update();
   };
 
   $scope.deleteDrive = function(drive) {

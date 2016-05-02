@@ -20,6 +20,9 @@
           placeholder="Name" ng-model="cat.name" />
       <span class="input-group-btn">
         <button class="btn btn-default" type="button"
+          ng-click="cat.$update()"
+          ><span class="glyphicon glyphicon-save"></span></button>
+        <button class="btn btn-default" type="button"
           ng-click="deleteCategory(cat)"
           ><span class="glyphicon glyphicon-remove"></span></button>
       </span>
@@ -46,6 +49,9 @@
       <input class="form-control"
           placeholder="Name" ng-model="tag.name" />
       <span class="input-group-btn">
+        <button class="btn btn-default" type="button"
+          ng-click="tag.$update()"
+          ><span class="glyphicon glyphicon-save"></span></button>
         <button class="btn btn-default" type="button"
           ng-click="deleteTag(cat)"
           ><span class="glyphicon glyphicon-remove"></span></button>
@@ -86,6 +92,9 @@
         placeholder="Name" ng-model="drive.name" />
     <span class="input-group-addon">{{ drive.drive_id }}</span>
     <span class="input-group-btn">
+      <button class="btn btn-default" type="button"
+        ng-click="updateDrive(drive)"
+        ><span class="glyphicon glyphicon-save"></span></button>
       <button class="btn btn-default" type="button"
         ng-click="deleteDrive(drive)"
         ><span class="glyphicon glyphicon-remove"></span></button>
