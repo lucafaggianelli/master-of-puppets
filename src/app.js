@@ -23,6 +23,10 @@ angular.module('sibilla', [
     function ($scope, Document, Category, Tag, Drive, Preferences, Flash) {
 
   $scope.docsFilter = { };
+  $scope.clearFilter = function() {
+    $scope.docsFilter = { };
+  };
+
   $scope.prefs = Preferences;
 
   /* Query all documents */

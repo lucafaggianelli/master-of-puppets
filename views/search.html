@@ -2,13 +2,13 @@
   <div class="form-group">
     <div class="row">
       <div class="col-sm-6">
-        <select class="form-control" multiple
-            ng-options="cat.name for cat in categories_available track by cat.id"
+        <select class="form-control"
+            ng-options="cat.id as cat.name for cat in categories_available"
             ng-model="docsFilter.categories"></select>
       </div>
       <div class="col-sm-6">
-        <select class="form-control" multiple
-            ng-options="tag.name for (k,tag) in tags_available track by tag.id"
+        <select class="form-control"
+            ng-options="tag.id as tag.name for (k,tag) in tags_available"
             ng-model="docsFilter.tags"></select>
       </div>
     </div>
