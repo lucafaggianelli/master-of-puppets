@@ -8,6 +8,7 @@ angular.module('sibilla', [
       'ngResource',
       'angular-loading-bar',
       'ngFlash',
+      'ui.bootstrap',
 
       'sibilla-admin',
       'filepicker',
