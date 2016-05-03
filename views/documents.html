@@ -1,32 +1,28 @@
 <div class="row">
-  <div class="col-sm-8">
-    <table class="table table-hover documents-table">
-      <thead>
-        <tr>
-          <th>Document</th>
-          <th>Tags</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <tr ng-repeat="doc in documents | filter: docsFilter" class="document-item">
-          <td><a href="#" ng-click="openFile(doc)">{{ doc.name }}</a>
-            <span class="badge" ng-if="doc.files.length > 1">{{ doc.files.length }}</span></td>
-          <td>
-            <tag ng-repeat="tag in doc.tags"
-                tag-id="tag"
-                tags-filter="docsFilter.tags"
-                >{{ tags_available[tag].name }}</tag></td>
-          <td>
-            <a href="#" class="btn btn-default btn-sm"
-                data-toggle="modal" data-target="#document-modal"
-                ng-click="editDocument(doc)">
-              <span class="glyphicon glyphicon-pencil"></span></a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="col-sm-8">
+    <div class="doc-item media"
+        ng-repeat="doc in documents | filter: docsFilter">
+      <div class="media-left">
+        <img class="media-object" src="http://placehold.it/64x64" />
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <a href="#" ng-click="openFile(doc)">{{ doc.name }}</a>
+          <span class="badge" ng-if="doc.files.length > 1">{{ doc.files.length }}</span></td>
+          <a href="#" class="doc-edit-link pull-right"
+              data-toggle="modal" data-target="#document-modal"
+              ng-click="editDocument(doc)">
+              <span class="glyphicon glyphicon-pencil"></span>
+              Edit</a>
+        </h4>
+        <p ng-show="doc.description"><i>{{ doc.description }}</i></p>
+        <tag ng-repeat="tag in doc.tags"
+            tag-id="tag"
+            tags-filter="docsFilter.tags"
+            >{{ tags_available[tag].name }}</tag></td>
+      </div>
+    </div>
   </div>
 
   <div class="col-sm-4">
@@ -35,8 +31,16 @@
         ng-options="cat.id as cat.name for cat in categories_available"
         ng-model="docsFilter.categories"></select>
     </div>
-    <tag ng-repeat="tag in tags_available"
-        tag-id="tag.id"
-        tags-filter="docsFilter.tags">{{ tag.name }}</tag>
+
+    <div class="form-group">
+      <tag ng-repeat="tag in tags_available"
+          tag-id="tag.id"
+          tags-filter="docsFilter.tags">{{ tag.name }}</tag>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block"
+          ng-click="clearFilter()">Clean</button>
+    </div>
   </div>
 </div>

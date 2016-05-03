@@ -30,3 +30,20 @@
 .tag.label {
   cursor: pointer;
 }
+
+.doc-item {
+  padding: .7em;
+}
+.doc-item:hover {
+  background-color: #F9F9F9;
+}
+.doc-item:hover .doc-edit-link {
+  display: block;
+}
+.doc-edit-link {
+  display: none;
+  font-size: .75em;
+}
+.doc-edit-link:hover {
+  text-decoration: none;
+}
