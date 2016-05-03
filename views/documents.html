@@ -1,23 +1,42 @@
-<table class="table table-hover documents-table">
-  <thead>
-    <tr>
-      <th>Document</th>
-      <th>Tags</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-sm-8">
+    <table class="table table-hover documents-table">
+      <thead>
+        <tr>
+          <th>Document</th>
+          <th>Tags</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <tr ng-repeat="doc in documents | filter: docsFilter" class="document-item">
-      <td><a href="#" ng-click="openFile(doc)">{{ doc.name }}</a>
-        <span class="badge" ng-if="doc.files.length > 1">{{ doc.files.length }}</span></td>
-      <td><span ng-repeat="tag in doc.tags" class="label label-default">{{ tags_available[tag].name }}</span></td>
-      <td>
-        <a href="#" class="btn btn-default btn-sm"
-            data-toggle="modal" data-target="#document-modal"
-            ng-click="editDocument(doc)">
-          <span class="glyphicon glyphicon-pencil"></span></a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      <tbody>
+        <tr ng-repeat="doc in documents | filter: docsFilter" class="document-item">
+          <td><a href="#" ng-click="openFile(doc)">{{ doc.name }}</a>
+            <span class="badge" ng-if="doc.files.length > 1">{{ doc.files.length }}</span></td>
+          <td>
+            <tag ng-repeat="tag in doc.tags"
+                tag-id="tag"
+                tags-filter="docsFilter.tags"
+                >{{ tags_available[tag].name }}</tag></td>
+          <td>
+            <a href="#" class="btn btn-default btn-sm"
+                data-toggle="modal" data-target="#document-modal"
+                ng-click="editDocument(doc)">
+              <span class="glyphicon glyphicon-pencil"></span></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="form-group">
+      <select class="form-control"
+        ng-options="cat.id as cat.name for cat in categories_available"
+        ng-model="docsFilter.categories"></select>
+    </div>
+    <tag ng-repeat="tag in tags_available"
+        tag-id="tag.id"
+        tags-filter="docsFilter.tags">{{ tag.name }}</tag>
+  </div>
+</div>

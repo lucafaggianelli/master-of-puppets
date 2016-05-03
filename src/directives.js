@@ -12,6 +12,17 @@ angular.module('sibilla')
   };
 })
 
+.directive('tag', [function() {
+  return {
+    templateUrl: 'views/tag.html',
+    transclude: true,
+    scope: {
+      tagId: '=',
+      tagsFilter: '=',
+    },
+  }
+}])
+
 .directive('confirm', ['$uibModal', function ($uibModal) {
   return {
     priority: 1,
