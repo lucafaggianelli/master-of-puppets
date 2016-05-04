@@ -23,7 +23,7 @@
           ng-click="cat.$update()"
           ><span class="glyphicon glyphicon-save"></span></button>
         <button class="btn btn-default" type="button"
-          ng-click="deleteCategory(cat)"
+          ng-click="deleteCategory(cat, $index)"
           confirm="Want to delete category?"
           ><span class="glyphicon glyphicon-remove"></span></button>
       </span>
@@ -54,7 +54,7 @@
           ng-click="tag.$update()"
           ><span class="glyphicon glyphicon-save"></span></button>
         <button class="btn btn-default" type="button"
-          ng-click="deleteTag(tag)"
+          ng-click="deleteTag(tag, $index)"
           confirm="Want to delete tag?"
           ><span class="glyphicon glyphicon-remove"></span></button>
       </span>

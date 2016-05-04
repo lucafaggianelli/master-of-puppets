@@ -59,7 +59,17 @@ angular.module('sibilla', [
   };
 
   $scope.deleteDocument = function(doc) {
-    doc.$delete();
+    var docIndex = -1;
+    $scope.documents.forEach(function(item, index) {
+      if (doc.id === item.id) {
+        docIndex = index;
+        return;
+      }
+    });
+
+    Document.delete(doc, function() {
+      $scope.documents.splice(docIndex, 1);
+    });
   };
 
   $scope.saveDocument = function() {
@@ -75,7 +85,9 @@ angular.module('sibilla', [
     if (this.docsForm.id) {
       this.docsForm.$update();
     } else {
-      this.docsForm.$save();
+      this.docsForm.$save(function(data) {
+        $scope.documents.push(data.data);
+      });
     }
   };
 

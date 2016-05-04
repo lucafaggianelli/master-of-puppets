@@ -62,8 +62,10 @@
     <button type="submit" class="btn btn-success"
       >Save</button>
     <button type="button" class="btn btn-danger"
+        ng-disabled="!docsForm.id"
         ng-click="deleteDocument(docsForm)"
         confirm="Want to delete document?"
+        data-dismiss="modal"
       >Delete</button>
   </div>
 </form>

@@ -18,7 +18,10 @@ angular.module('sibilla-admin', [])
     if (!$scope.category_new)
       return;
 
-    $scope.category_new.$save();
+    $scope.category_new.$save(function(data) {
+      $scope.categories.push(data.data);
+      $scope.category_new = null;
+    });
   };
 
   $scope.updateCategory = function(cat) {
@@ -30,8 +33,10 @@ angular.module('sibilla-admin', [])
     cat.$update();
   };
 
-  $scope.deleteCategory = function(cat) {
-    cat.$delete();
+  $scope.deleteCategory = function(cat, index) {
+    Category.delete(cat, function() {
+      $scope.categories.splice(index, 1);
+    });
   };
 
   /*
@@ -43,7 +48,10 @@ angular.module('sibilla-admin', [])
     if (!$scope.tag_new)
       return;
 
-    $scope.tag_new.$save();
+    $scope.tag_new.$save(function(data) {
+      $scope.tags.push(data.data);
+      $scope.tag_new = null;
+    });
   };
 
   $scope.updateTag = function(tag) {
@@ -55,8 +63,10 @@ angular.module('sibilla-admin', [])
     tag.$update();
   };
 
-  $scope.deleteTag = function(tag) {
-    tag.$delete();
+  $scope.deleteTag = function(tag, index) {
+    Tag.delete(tag, function() {
+      $scope.tags.splice(index, 1);
+    });
   };
 
   $scope.listLocalDrives = function(callback) {
