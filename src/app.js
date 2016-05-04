@@ -79,9 +79,12 @@ angular.module('sibilla', [
     }
   };
 
-  $scope.$on('filepicker:onSelect', function(event, file) {
-    console.log('filepicker:onSelect', file);
-    $scope.docsForm.newFile = file;
+  $scope.$on('filepicker:onSelect', function(event, absolute) {
+    console.log('filepicker:onSelect', absolute);
+
+    var driveMount = $scope.drivesMountpoint[$scope.docsForm.drive];
+    var relative = path.relative(driveMount, absolute);
+    $scope.docsForm.newFile = relative;
   });
 
   $scope.openFilePicker = function() {
@@ -89,6 +92,14 @@ angular.module('sibilla', [
 
     if (drive_id in $scope.drivesMountpoint) {
       var root = $scope.drivesMountpoint[drive_id];
+
+      if ($scope.docsForm.newFile) {
+        if ($scope.docsForm.newFile.endsWith('/'))
+          root = path.join(root, $scope.docsForm.newFile);
+        else
+          root = path.join(root, path.dirname($scope.docsForm.newFile));
+      }
+
       $scope.$broadcast('filepicker:setRoot', root);
     } else {
       console.warn("Can't find drive", drive_id);

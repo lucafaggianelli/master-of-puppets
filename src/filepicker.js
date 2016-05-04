@@ -82,8 +82,7 @@ angular.module('filepicker', [])
       $scope.cwd.push($scope.selected);
 
     var absolute = path.join.apply(this, $scope.cwd);
-    var relative = path.relative($scope.root, absolute);
-    $scope.$emit('filepicker:onSelect', relative);
+    $scope.$emit('filepicker:onSelect', absolute);
 
     $scope.root = null;
     $scope.cwd = [];
