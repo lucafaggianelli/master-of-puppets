@@ -1,11 +1,11 @@
 var hide_id_from_data = function(data, headers) {
   delete data.id;
   return angular.toJson(data);
-}
+};
 
 var get_data_from_response = function(data, headers) {
   return angular.fromJson(data).data;
-}
+};
 
 var build_resource = function($resource, Preferences, resourceInterceptor, path, params) {
   return $resource(Preferences.get('server') + path,
@@ -31,7 +31,7 @@ var build_resource = function($resource, Preferences, resourceInterceptor, path,
       }
     }
   );
-}
+};
 
 var RESOURCE_SUCCESS_ACTIONS = {
     'PUT': 'modified',
@@ -100,5 +100,5 @@ var app = angular.module('sibilla')
       return build_resource($resource, Preferences, resourceInterceptor,
         '/api/drives/:id/', {'id': '@id'});
     }
-])
+]);
 

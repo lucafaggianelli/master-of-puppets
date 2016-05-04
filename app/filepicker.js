@@ -12,7 +12,7 @@ angular.module('filepicker', [])
    */
   $scope.cd = function(folder) {
 
-    if (folder != 0 && !folder) {
+    if (folder !== 0 && !folder) {
       console.error('Null folder', folder);
       return;
     } else if (folder == '..') {
@@ -43,7 +43,7 @@ angular.module('filepicker', [])
       $scope.selected = null;
 
     $scope.ls();
-  }
+  };
 
   $scope.ls = function() {
     var absPath = path.join.apply(this, $scope.cwd);
@@ -60,8 +60,8 @@ angular.module('filepicker', [])
         var stat;
         try {
           stat = fs.statSync(path.join(absPath, files[i]));
-        } catch (err) {
-          console.warn(err);
+        } catch (e) {
+          console.warn(e);
           continue;
         }
 
@@ -75,7 +75,7 @@ angular.module('filepicker', [])
       }
       $scope.$apply();
     });
-  }
+  };
 
   $scope.select = function() {
     if ($scope.selected)
@@ -87,12 +87,12 @@ angular.module('filepicker', [])
     $scope.root = null;
     $scope.cwd = [];
     $scope.dirContent = [];
-  }
+  };
 
   $scope.$on('filepicker:setRoot', function(event, root) {
     console.log('setRoot', root);
     $scope.root = root;
     $scope.cd(root);
   });
-}])
+}]);
 

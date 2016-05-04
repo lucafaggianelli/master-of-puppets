@@ -84,7 +84,7 @@ angular.module('sibilla-admin', [])
         $scope.$apply();
       });
     });
-  }
+  };
 
   $scope.createDrive = function() {
     if (!$scope.drive_new)
@@ -102,5 +102,5 @@ angular.module('sibilla-admin', [])
   };
 
   $scope.listLocalDrives();
-}])
+}]);
 

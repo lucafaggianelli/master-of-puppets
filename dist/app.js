@@ -84,7 +84,7 @@ angular.module('sibilla-admin', [])
         $scope.$apply();
       });
     });
-  }
+  };
 
   $scope.createDrive = function() {
     if (!$scope.drive_new)
@@ -102,13 +102,13 @@ angular.module('sibilla-admin', [])
   };
 
   $scope.listLocalDrives();
-}])
+}]);
 
-;const shell = require('electron').shell;
-const path = require('path');
-const fs = require('fs');
-const njds = require('nodejs-disks');
-const mime = require('mime-types');
+;var shell = require('electron').shell;
+var path = require('path');
+var fs = require('fs');
+var njds = require('nodejs-disks');
+var mime = require('mime-types');
 
 angular.module('sibilla', [
       'ngResource',
@@ -222,12 +222,12 @@ angular.module('sibilla', [
     } else {
       console.warn("Can't find drive", drive_id);
     }
-  }
+  };
 
   $scope.openFile = function(doc, revision) {
     var rev = parseInt(revision) || 0;
 
-    if (!doc.files || doc.files.length == 0) {
+    if (!doc.files || doc.files.length === 0) {
       console.warn('Document without files', doc.name);
       return;
     }
@@ -268,8 +268,8 @@ angular.module('sibilla', [
         console.log('Found local drives', $scope.drivesMountpoint);
       });
     });
-  }
-}])
+  };
+}]);
 
 ;angular.module('sibilla')
 
@@ -293,7 +293,7 @@ angular.module('sibilla', [
       tagId: '=',
       tagsFilter: '=',
     },
-  }
+  };
 }])
 
 .directive('confirm', ['$uibModal', function ($uibModal) {
@@ -339,7 +339,7 @@ angular.module('sibilla', [
    */
   $scope.cd = function(folder) {
 
-    if (folder != 0 && !folder) {
+    if (folder !== 0 && !folder) {
       console.error('Null folder', folder);
       return;
     } else if (folder == '..') {
@@ -370,7 +370,7 @@ angular.module('sibilla', [
       $scope.selected = null;
 
     $scope.ls();
-  }
+  };
 
   $scope.ls = function() {
     var absPath = path.join.apply(this, $scope.cwd);
@@ -387,8 +387,8 @@ angular.module('sibilla', [
         var stat;
         try {
           stat = fs.statSync(path.join(absPath, files[i]));
-        } catch (err) {
-          console.warn(err);
+        } catch (e) {
+          console.warn(e);
           continue;
         }
 
@@ -402,7 +402,7 @@ angular.module('sibilla', [
       }
       $scope.$apply();
     });
-  }
+  };
 
   $scope.select = function() {
     if ($scope.selected)
@@ -414,14 +414,14 @@ angular.module('sibilla', [
     $scope.root = null;
     $scope.cwd = [];
     $scope.dirContent = [];
-  }
+  };
 
   $scope.$on('filepicker:setRoot', function(event, root) {
     console.log('setRoot', root);
     $scope.root = root;
     $scope.cd(root);
   });
-}])
+}]);
 
 ;angular.module('sibilla')
 
@@ -432,7 +432,7 @@ angular.module('sibilla', [
 		var units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
 			number = Math.floor(Math.log(bytes) / Math.log(1024));
 		return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) +  ' ' + units[number];
-	}
+	};
 });
 ;angular.module('preferences', [])
 
@@ -457,14 +457,15 @@ angular.module('sibilla', [
   }
 
   function initPreferences() {
-    const prefsDefault = JSON.parse(
+    var prefsDefault = JSON.parse(
         fs.readFileSync('preferences.default.json', 'utf8'));
+    var prefsUser = {};
 
     try {
       fs.mkdir(prefPath, function() {});
       console.log('User pref file', prefFile);
 
-      var prefsUser = JSON.parse(fs.readFileSync(prefFile, 'utf8'));
+      prefsUser = JSON.parse(fs.readFileSync(prefFile, 'utf8'));
     } catch (err) {
       console.warn("Can't read user preferences", err);
     }
@@ -493,7 +494,6 @@ angular.module('sibilla', [
       if (err && err.code != 'EEXIST') {
         var msg = 'Settings not saved. Can\'t create folder preferences folder ' + prefPath;
         Flash.create('error', msg);
-        console.warn(msg)
         return;
       }
       fs.writeFileSync(prefFile, JSON.stringify(new_prefs, null, 2), 'utf8');
@@ -501,16 +501,16 @@ angular.module('sibilla', [
   };
 
   return service;
-}])
+}]);
 
 ;var hide_id_from_data = function(data, headers) {
   delete data.id;
   return angular.toJson(data);
-}
+};
 
 var get_data_from_response = function(data, headers) {
   return angular.fromJson(data).data;
-}
+};
 
 var build_resource = function($resource, Preferences, resourceInterceptor, path, params) {
   return $resource(Preferences.get('server') + path,
@@ -536,7 +536,7 @@ var build_resource = function($resource, Preferences, resourceInterceptor, path,
       }
     }
   );
-}
+};
 
 var RESOURCE_SUCCESS_ACTIONS = {
     'PUT': 'modified',
@@ -605,5 +605,5 @@ var app = angular.module('sibilla')
       return build_resource($resource, Preferences, resourceInterceptor,
         '/api/drives/:id/', {'id': '@id'});
     }
-])
+]);
 

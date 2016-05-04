@@ -1,8 +1,8 @@
-const shell = require('electron').shell;
-const path = require('path');
-const fs = require('fs');
-const njds = require('nodejs-disks');
-const mime = require('mime-types');
+var shell = require('electron').shell;
+var path = require('path');
+var fs = require('fs');
+var njds = require('nodejs-disks');
+var mime = require('mime-types');
 
 angular.module('sibilla', [
       'ngResource',
@@ -116,12 +116,12 @@ angular.module('sibilla', [
     } else {
       console.warn("Can't find drive", drive_id);
     }
-  }
+  };
 
   $scope.openFile = function(doc, revision) {
     var rev = parseInt(revision) || 0;
 
-    if (!doc.files || doc.files.length == 0) {
+    if (!doc.files || doc.files.length === 0) {
       console.warn('Document without files', doc.name);
       return;
     }
@@ -162,6 +162,6 @@ angular.module('sibilla', [
         console.log('Found local drives', $scope.drivesMountpoint);
       });
     });
-  }
-}])
+  };
+}]);
 

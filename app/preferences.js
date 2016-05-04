@@ -21,14 +21,15 @@ angular.module('preferences', [])
   }
 
   function initPreferences() {
-    const prefsDefault = JSON.parse(
+    var prefsDefault = JSON.parse(
         fs.readFileSync('preferences.default.json', 'utf8'));
+    var prefsUser = {};
 
     try {
       fs.mkdir(prefPath, function() {});
       console.log('User pref file', prefFile);
 
-      var prefsUser = JSON.parse(fs.readFileSync(prefFile, 'utf8'));
+      prefsUser = JSON.parse(fs.readFileSync(prefFile, 'utf8'));
     } catch (err) {
       console.warn("Can't read user preferences", err);
     }
@@ -57,7 +58,6 @@ angular.module('preferences', [])
       if (err && err.code != 'EEXIST') {
         var msg = 'Settings not saved. Can\'t create folder preferences folder ' + prefPath;
         Flash.create('error', msg);
-        console.warn(msg)
         return;
       }
       fs.writeFileSync(prefFile, JSON.stringify(new_prefs, null, 2), 'utf8');
@@ -65,5 +65,5 @@ angular.module('preferences', [])
   };
 
   return service;
-}])
+}]);
 

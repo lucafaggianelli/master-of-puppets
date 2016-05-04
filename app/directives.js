@@ -20,7 +20,7 @@ angular.module('sibilla')
       tagId: '=',
       tagsFilter: '=',
     },
-  }
+  };
 }])
 
 .directive('confirm', ['$uibModal', function ($uibModal) {
