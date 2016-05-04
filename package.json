@@ -1,7 +1,7 @@
 {
   "name": "sibilla",
   "description": "Organize shared folders",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js"
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lucafaggianelli/sibilla#readme",
   "devDependencies": {
+    "electron-packager": "^7.0.1",
     "electron-prebuilt": "^0.37.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",

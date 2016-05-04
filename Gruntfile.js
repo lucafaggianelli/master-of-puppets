@@ -13,14 +13,18 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: [ 'src/*.js', 'tmp/*.js' ],
+        src: [ 'app/*.js', 'tmp/*.js' ],
         dest: 'dist/app.js'
       }
     },
 
+    packelectron: {
+    
+    },
+
     watch: {
       dev: {
-        files: [ 'Gruntfile.js', 'src/*.js', '*.html' ],
+        files: [ 'Gruntfile.js', 'app/*.js', '*.html' ],
         tasks: [ 'jshint', 'concat:dist' ],
         options: {
           atBegin: true
@@ -40,6 +44,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadTasks('tasks/');
 
   grunt.registerTask('dev', [ 'watch:dev' ]);
+  grunt.registerTask('pack', [ 'packelectron' ]);
 };
