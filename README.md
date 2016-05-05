@@ -5,8 +5,12 @@ Organize your shared drives
 Sibilla is an app that helps you manage folders and shared drives organizing and categorizing files and folders.
 It is based on [Electron](http://electron.atom.io/) and [AngularJS](https://angularjs.org/).
 
+
 ## Install
 
+Download the [latest release](https://github.com/lucafaggianelli/sibilla/releases/latest) from GitHub.
+
+If you want to install it from sources, clone the repository and install it with NPM
 ```
 # Install dependencies and build JS
 npm install
