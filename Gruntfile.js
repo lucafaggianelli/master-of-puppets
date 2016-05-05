@@ -18,6 +18,19 @@ module.exports = function(grunt) {
       }
     },
 
+    compress: {
+      dist: {
+        options: {
+          archive: 'build/<%= pkg.name %>-linux_x64-<%= pkg.version %>.zip',
+          mode: 'tgz'
+        },
+        files: [{
+          src: [ 'build/sibilla-linux-x64/**' ],
+          dest: 'sibilla-linux-x64'
+        }]
+      }
+    },
+
     packelectron: {
     
     },
@@ -41,11 +54,12 @@ module.exports = function(grunt) {
   });
 
   // Loading of tasks and registering tasks will be written here
+  grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadTasks('tasks/');
 
   grunt.registerTask('dev', [ 'watch:dev' ]);
-  grunt.registerTask('pack', [ 'packelectron' ]);
+  grunt.registerTask('pack', [ 'packelectron', 'compress:dist' ]);
 };
