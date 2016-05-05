@@ -1,8 +1,20 @@
 language: node_js
 node_js:
-  - "5"
   - "4"
-  - "0.10"
 
+# Run electron-packager then gzip the folder
 script:
   - grunt pack
+
+before_deploy:
+  - export RELEASE_FILE=$(ls build/*.tar.gz)
+  - echo "deploying $RELEASE_FILE to GitHub releases"
+
+deploy:
+  provider: releases
+  api_key: "${GH_TOKEN}"
+  skip_cleanup: true
+  file:
+    - "${RELEASE_FILE}"
+  on:
+    tags: true

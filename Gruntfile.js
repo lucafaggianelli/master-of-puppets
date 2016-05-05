@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     compress: {
       dist: {
         options: {
-          archive: 'build/<%= pkg.name %>-linux_x64-<%= pkg.version %>.zip',
+          archive: 'build/<%= pkg.name %>-linux_x64-<%= pkg.version %>.tar.gz',
           mode: 'tgz'
         },
         files: [{
