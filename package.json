@@ -4,7 +4,8 @@
   "version": "0.0.4",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -17,13 +18,15 @@
   },
   "homepage": "https://github.com/lucafaggianelli/sibilla#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
     "electron-packager": "^7.0.1",
     "electron-prebuilt": "^0.37.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0"
+    "grunt-contrib-watch": "^1.0.0",
+    "mocha": "^2.4.5"
   },
   "dependencies": {
     "angular": "1.5.x",
