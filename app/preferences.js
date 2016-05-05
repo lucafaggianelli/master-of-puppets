@@ -21,8 +21,8 @@ angular.module('preferences', [])
   }
 
   function initPreferences() {
-    var prefsDefault = JSON.parse(
-        fs.readFileSync('preferences.default.json', 'utf8'));
+    var prefsDefault = JSON.parse(fs.readFileSync(
+        path.join(__dirname, 'preferences.default.json'), 'utf8'));
     var prefsUser = {};
 
     try {

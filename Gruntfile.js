@@ -21,12 +21,14 @@ module.exports = function(grunt) {
     compress: {
       dist: {
         options: {
-          archive: 'build/<%= pkg.name %>-linux_x64-<%= pkg.version %>.tar.gz',
+          archive: 'build/<%= pkg.name %>-linux64-<%= pkg.version %>.tar.gz',
           mode: 'tgz'
         },
         files: [{
-          src: [ 'build/sibilla-linux-x64/**' ],
-          dest: 'sibilla-linux-x64'
+          cwd: 'build/sibilla-linux-x64/',
+          src: ['**'],
+          dest: 'sibilla',
+          expand: true
         }]
       }
     },
@@ -61,5 +63,5 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks/');
 
   grunt.registerTask('dev', [ 'watch:dev' ]);
-  grunt.registerTask('pack', [ 'packelectron', 'compress:dist' ]);
+  grunt.registerTask('pack', [ 'concat:dist', 'packelectron', 'compress:dist' ]);
 };

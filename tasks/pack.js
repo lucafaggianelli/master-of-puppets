@@ -12,7 +12,9 @@ module.exports = function(grunt) {
       dir: '.',
       out: 'build',
       arch: ['x64'],
-      platform: ['linux']
+      platform: ['linux'],
+      overwrite: true,
+      prune: true
     },
     
     function(err, appPaths) {
