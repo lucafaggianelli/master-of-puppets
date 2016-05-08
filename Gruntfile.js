@@ -10,7 +10,8 @@ module.exports = function(grunt) {
 
     concat: {
       options: {
-        separator: ';'
+        separator: ';',
+        sourceMap: true
       },
       dist: {
         src: [ 'app/*.js', 'tmp/*.js' ],
