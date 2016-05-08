@@ -1,7 +1,7 @@
 angular.module('sbl-docs', [])
 
-.controller('DocumentsCtrl', ['$scope', 'Document', 'Category', 'Tag', 'Drive', 'Preferences', 'Flash',
-    function ($scope, Document, Category, Tag, Drive, Preferences, Flash) {
+.controller('DocumentsCtrl', ['$scope', '$uibModal', 'filepicker', 'Document', 'Category', 'Tag', 'Drive', 'Preferences', 'Flash',
+    function ($scope, $uibModal, filepicker, Document, Category, Tag, Drive, Preferences, Flash) {
 
   $scope.docsFilter = { };
   $scope.clearFilter = function() {
@@ -37,7 +37,17 @@ angular.module('sbl-docs', [])
       doc = new Document();
     }
     $scope.docsForm = doc;
+
+    $uibModal.open({
+      scope: $scope,
+      templateUrl: 'views/document-form.html'
+    });
   };
+
+  $scope.$on('createDocument', function() {
+    console.log('before edit docs', $scope.drives_available);
+    $scope.editDocument();
+  });
 
   $scope.deleteDocument = function(doc) {
     var docIndex = -1;
@@ -72,14 +82,6 @@ angular.module('sbl-docs', [])
     }
   };
 
-  $scope.$on('filepicker:onSelect', function(event, absolute) {
-    console.log('filepicker:onSelect', absolute);
-
-    var driveMount = $scope.drivesMountpoint[$scope.docsForm.drive];
-    var relative = path.relative(driveMount, absolute);
-    $scope.docsForm.newFile = relative;
-  });
-
   $scope.openFilePicker = function() {
     var drive_id = $scope.docsForm.drive;
 
@@ -93,7 +95,13 @@ angular.module('sbl-docs', [])
           root = path.join(root, path.dirname($scope.docsForm.newFile));
       }
 
-      $scope.$broadcast('filepicker:setRoot', root);
+      filepicker.open(root, function(absolute) {
+        console.log('filepicker:onSelect', absolute);
+
+        var driveMount = $scope.drivesMountpoint[$scope.docsForm.drive];
+        var relative = path.relative(driveMount, absolute);
+        $scope.docsForm.newFile = relative;
+      });
     } else {
       console.warn("Can't find drive", drive_id);
     }

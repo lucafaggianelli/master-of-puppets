@@ -43,5 +43,8 @@ angular.module('sibilla', [
 .controller('MainCtrl', ['$scope', 'Document', 'Category', 'Tag', 'Drive', 'Preferences', 'Flash',
     function ($scope, Document, Category, Tag, Drive, Preferences, Flash) {
 
+  $scope.createDocument = function() {
+    $scope.$broadcast('createDocument');
+  };
 }]);
 

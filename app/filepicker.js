@@ -1,9 +1,26 @@
 angular.module('sbl-filepicker', [])
 
-.controller('FilePickerCtrl', ['$scope', 'Preferences',
-    function($scope, Preferences) {
+.factory('filepicker', ['$uibModal', function($uibModal) {
+  return {
+    open: function(root, callback) {
+      $uibModal.open({
+        controller: FilePickerCtrl,
+        templateUrl: 'views/file-picker.html',
+        resolve: {
+          opts: {
+            root: root,
+            callback: callback
+          }
+        }
+      });
+    }
+  };
+}]);
 
-  $scope.root = null;
+var FilePickerCtrl = function($scope, $uibModalInstance, opts) {
+
+  $scope.root = opts.root;
+  $scope.onselect = opts.callback;
   $scope.cwd = [];
   $scope.dirContent = [];
 
@@ -82,17 +99,18 @@ angular.module('sbl-filepicker', [])
       $scope.cwd.push($scope.selected);
 
     var absolute = path.join.apply(this, $scope.cwd);
-    $scope.$emit('filepicker:onSelect', absolute);
+    if ($scope.onselect) {
+      $scope.onselect(absolute);
+    }
+
+    $uibModalInstance.close();
 
     $scope.root = null;
     $scope.cwd = [];
     $scope.dirContent = [];
   };
 
-  $scope.$on('filepicker:setRoot', function(event, root) {
-    console.log('setRoot', root);
-    $scope.root = root;
-    $scope.cd(root);
-  });
-}]);
+  // Init the file picker entering the root provided as arg
+  $scope.cd($scope.root);
+};
 
