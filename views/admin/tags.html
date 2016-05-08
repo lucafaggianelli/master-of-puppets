@@ -1,0 +1,32 @@
+  <h1>Tags</h1>
+
+  <div class="form-group">
+    <div class="input-group">
+      <input class="form-control"
+          placeholder="Name" ng-model="tag_new.name" />
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="button"
+          ng-click="createTag()"
+          ><span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group"
+      ng-repeat="tag in tags track by tag.id">
+    <div class="input-group">
+      <input class="form-control"
+          placeholder="Name" ng-model="tag.name" />
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"
+          ng-click="tag.$update()"
+          ><span class="glyphicon glyphicon-save"></span></button>
+        <button class="btn btn-default" type="button"
+          ng-click="deleteTag(tag, $index)"
+          confirm="Want to delete tag?"
+          ><span class="glyphicon glyphicon-remove"></span></button>
+      </span>
+    </div>
+  </div>
+
+

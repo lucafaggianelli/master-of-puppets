@@ -1,0 +1,31 @@
+<h1>Categories</h1>
+
+<div class="form-group">
+  <div class="input-group">
+    <input class="form-control" name="name"
+        placeholder="Name" ng-model="category_new.name" />
+    <span class="input-group-btn">
+      <button class="btn btn-success" type="button"
+        ng-click="createCategory()"
+        ><span class="glyphicon glyphicon-plus"></span></button>
+    </span>
+  </div>
+</div>
+
+<div class="form-group"
+    ng-repeat="cat in categories track by cat.id">
+  <div class="input-group">
+    <input class="form-control" name="name"
+        placeholder="Name" ng-model="cat.name" />
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button"
+        ng-click="cat.$update()"
+        ><span class="glyphicon glyphicon-save"></span></button>
+      <button class="btn btn-default" type="button"
+        ng-click="deleteCategory(cat, $index)"
+        confirm="Want to delete category?"
+        ><span class="glyphicon glyphicon-remove"></span></button>
+    </span>
+  </div>
+</div>
+

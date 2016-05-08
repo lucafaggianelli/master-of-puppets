@@ -3,6 +3,12 @@ angular.module('sbl-admin', [])
 .controller('AdminCtrl', ['$scope', 'Preferences', 'Category', 'Tag', 'Drive',
     function($scope, Preferences, Category, Tag, Drive) {
 
+  $scope.adminPages = [
+      'categories',
+      'tags',
+      'drives'
+  ];
+
   $scope.categories = Category.query();
   $scope.category_new = new Category();
 
@@ -11,6 +17,10 @@ angular.module('sbl-admin', [])
 
   $scope.drives = Drive.query();
   $scope.drive_new = new Drive();
+
+  $scope.selectTab = function($event) {
+    $($event.currentTarget).tab('show');
+  };
 
   $scope.createCategory = function() {
     console.log("create cat", $scope.category_new);

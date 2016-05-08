@@ -1,0 +1,44 @@
+<h1>Drives</h1>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <select class="form-control"
+          ng-model="drive_new.drive_id"
+          ng-options="drive.drive as drive.drive for drive in localDrives">
+      </select>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" type="text" placeholder="Name"
+            ng-model="drive_new.name"/>
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="button"
+            ng-click="createDrive()"
+            ><span class="glyphicon glyphicon-plus"></span></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="input-group"
+    ng-repeat="drive in drives">
+  <input type="text" class="form-control"
+      placeholder="Name" ng-model="drive.name" />
+  <span class="input-group-addon">{{ drive.drive_id }}</span>
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button"
+      ng-click="updateDrive(drive)"
+      ><span class="glyphicon glyphicon-save"></span></button>
+    <button class="btn btn-default" type="button"
+      ng-click="deleteDrive(drive)"
+      confirm="Want to delete drive?"
+      ><span class="glyphicon glyphicon-remove"></span></button>
+  </span>
+</div>
+
+

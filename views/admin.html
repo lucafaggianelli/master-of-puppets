@@ -1,113 +1,29 @@
-<form ng-controller="AdminCtrl">
-  <h1>Categories</h1>
-
-  <div class="form-group">
-    <div class="input-group">
-      <input class="form-control" name="name"
-          placeholder="Name" ng-model="category_new.name" />
-      <span class="input-group-btn">
-        <button class="btn btn-success" type="button"
-          ng-click="createCategory()"
-          ><span class="glyphicon glyphicon-plus"></span></button>
-      </span>
-    </div>
-  </div>
-
-  <div class="form-group"
-      ng-repeat="cat in categories track by cat.id">
-    <div class="input-group">
-      <input class="form-control" name="name"
-          placeholder="Name" ng-model="cat.name" />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button"
-          ng-click="cat.$update()"
-          ><span class="glyphicon glyphicon-save"></span></button>
-        <button class="btn btn-default" type="button"
-          ng-click="deleteCategory(cat, $index)"
-          confirm="Want to delete category?"
-          ><span class="glyphicon glyphicon-remove"></span></button>
-      </span>
-    </div>
-  </div>
-
-  <h1>Tags</h1>
-
-  <div class="form-group">
-    <div class="input-group">
-      <input class="form-control"
-          placeholder="Name" ng-model="tag_new.name" />
-      <span class="input-group-btn">
-        <button class="btn btn-success" type="button"
-          ng-click="createTag()"
-          ><span class="glyphicon glyphicon-plus"></span></button>
-      </span>
-    </div>
-  </div>
-
-  <div class="form-group"
-      ng-repeat="tag in tags track by tag.id">
-    <div class="input-group">
-      <input class="form-control"
-          placeholder="Name" ng-model="tag.name" />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button"
-          ng-click="tag.$update()"
-          ><span class="glyphicon glyphicon-save"></span></button>
-        <button class="btn btn-default" type="button"
-          ng-click="deleteTag(tag, $index)"
-          confirm="Want to delete tag?"
-          ><span class="glyphicon glyphicon-remove"></span></button>
-      </span>
-    </div>
-  </div>
-
-  <h1>Drives</h1>
+<div ng-controller="AdminCtrl">
 
   <div class="row">
-    <div class="col-sm-6">
-      <div class="form-group">
-        <select class="form-control"
-            ng-model="drive_new.drive_id"
-            ng-options="drive.drive as drive.drive for drive in localDrives">
-        </select>
-      </div>
+
+    <div class="col-sm-2">
+      <!-- Nav tabs -->
+      <ul id="admin-pages" class="nav nav-pills nav-stacked" role="tablist">
+        <li role="presentation" ng-repeat="view in adminPages"
+            ng-class="{'active': $index == 0}">
+        <a href="" data-target="#admin-{{ view }}" ng-click="selectTab($event)"
+          style="text-transform:capitalize;">{{ view  }}</a></li>
+      </ul>
     </div>
 
-    <div class="col-sm-6">
-      <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" type="text" placeholder="Name"
-              ng-model="drive_new.name"/>
-          <span class="input-group-btn">
-            <button class="btn btn-success" type="button"
-              ng-click="createDrive()"
-              ><span class="glyphicon glyphicon-plus"></span></button>
-          </span>
+    <div class="col-sm-10">
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane" id="admin-{{ view }}" role="tabpanel"
+            ng-repeat="view in adminPages"
+            ng-include="'views/admin/'+view+'.html'"
+            ng-class="{'active': $index == 0}">
         </div>
       </div>
     </div>
+
   </div>
 
-  <div class="input-group"
-      ng-repeat="drive in drives">
-    <input type="text" class="form-control"
-        placeholder="Name" ng-model="drive.name" />
-    <span class="input-group-addon">{{ drive.drive_id }}</span>
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="button"
-        ng-click="updateDrive(drive)"
-        ><span class="glyphicon glyphicon-save"></span></button>
-      <button class="btn btn-default" type="button"
-        ng-click="deleteDrive(drive)"
-        confirm="Want to delete drive?"
-        ><span class="glyphicon glyphicon-remove"></span></button>
-    </span>
-  </div>
-
-  <!--
-  <div class="form-group">
-    <button type="submit" class="btn btn-success form-control"
-      ng-disabled="documentform.$pristine">Save</button>
-  </div>-->
-</form>
+</div>
 
