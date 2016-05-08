@@ -1,4 +1,4 @@
-angular.module('sibilla-admin', [])
+angular.module('sbl-admin', [])
 
 .controller('AdminCtrl', ['$scope', 'Preferences', 'Category', 'Tag', 'Drive',
     function($scope, Preferences, Category, Tag, Drive) {

@@ -1,4 +1,4 @@
-angular.module('preferences', [])
+angular.module('sbl-preferences', [])
 
 .controller('PreferencesCtrl', ['$scope', 'Preferences',
     function($scope, Preferences) {

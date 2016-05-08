@@ -1,4 +1,4 @@
-angular.module('filepicker', [])
+angular.module('sbl-filepicker', [])
 
 .controller('FilePickerCtrl', ['$scope', 'Preferences',
     function($scope, Preferences) {
