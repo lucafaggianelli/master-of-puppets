@@ -3,11 +3,12 @@ var hide_id_from_data = function(data, headers) {
   return angular.toJson(data);
 };
 
-var API_VERSION = 2;
 var get_data_from_response = function(data, headers) {
-  if (API_VERSION == 1) {
+  var api_version = parseInt(headers('X-Api-Version') || 1);
+
+  if (api_version <= 1) {
     return angular.fromJson(data).data;
-  } else if (API_VERSION >= 2) {
+  } else if (api_version >= 2) {
     return angular.fromJson(data);
   }
 };
@@ -22,7 +23,7 @@ var build_resource = function(path) {
           query: {
             method: 'GET',
             isArray: true,
-            //transformResponse: get_data_from_response,
+            transformResponse: get_data_from_response,
           },
           update: {
             method: 'PUT',
