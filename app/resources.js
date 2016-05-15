@@ -3,34 +3,45 @@ var hide_id_from_data = function(data, headers) {
   return angular.toJson(data);
 };
 
+var API_VERSION = 2;
 var get_data_from_response = function(data, headers) {
-  return angular.fromJson(data).data;
+  if (API_VERSION == 1) {
+    return angular.fromJson(data).data;
+  } else if (API_VERSION >= 2) {
+    return angular.fromJson(data);
+  }
 };
 
-var build_resource = function($resource, Preferences, resourceInterceptor, path, params) {
-  return $resource(Preferences.get('server') + path,
-    params,
-    {
-      query: {
-        method: 'GET',
-        isArray: true,
-        transformResponse: get_data_from_response,
-      },
-      update: {
-        method: 'PUT',
-        transformRequest: hide_id_from_data,
-        interceptor: resourceInterceptor,
-      },
-      save: {
-        method: 'POST',
-        interceptor: resourceInterceptor,
-      },
-      delete: {
-        method: 'DELETE',
-        interceptor: resourceInterceptor,
-      }
+var build_resource = function(path) {
+  return ['$resource', 'Preferences', 'resourceInterceptor',
+    function($resource, Preferences, resourceInterceptor) {
+
+      return $resource(Preferences.get('server') + '/api/' + path + '/:id/',
+        {'id': '@id'},
+        {
+          query: {
+            method: 'GET',
+            isArray: true,
+            //transformResponse: get_data_from_response,
+          },
+          update: {
+            method: 'PUT',
+            transformRequest: hide_id_from_data,
+            interceptor: resourceInterceptor,
+          },
+          save: {
+            method: 'POST',
+            interceptor: resourceInterceptor,
+          },
+          delete: {
+            method: 'DELETE',
+            interceptor: resourceInterceptor,
+          }
+        }
+      );
+
     }
-  );
+  ];
 };
 
 var RESOURCE_SUCCESS_ACTIONS = {
@@ -74,31 +85,13 @@ var app = angular.module('sibilla')
   };
 }])
 
-.factory('Document', ['$resource', 'Preferences', 'resourceInterceptor',
-    function($resource, Preferences, resourceInterceptor) {
-      return build_resource($resource, Preferences, resourceInterceptor,
-        '/api/docs/:id/', {'id': '@id'});
-    }
-])
+.factory('Info', build_resource(''))
 
-.factory('Category', ['$resource', 'Preferences', 'resourceInterceptor',
-    function($resource, Preferences, resourceInterceptor) {
-      return build_resource($resource, Preferences, resourceInterceptor,
-        '/api/categories/:id/', {'id': '@id'});
-    }
-])
+.factory('Document', build_resource('docs'))
 
-.factory('Tag', ['$resource', 'Preferences', 'resourceInterceptor',
-    function($resource, Preferences, resourceInterceptor) {
-      return build_resource($resource, Preferences, resourceInterceptor,
-        '/api/tags/:id/', {'id': '@id'});
-    }
-])
+.factory('Category', build_resource('categories'))
 
-.factory('Drive', ['$resource', 'Preferences', 'resourceInterceptor',
-    function($resource, Preferences, resourceInterceptor) {
-      return build_resource($resource, Preferences, resourceInterceptor,
-        '/api/drives/:id/', {'id': '@id'});
-    }
-]);
+.factory('Tag', build_resource('tags'))
+
+.factory('Drive', build_resource('drives'));
 
